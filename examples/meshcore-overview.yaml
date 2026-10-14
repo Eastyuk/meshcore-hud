@@ -1,0 +1,43 @@
+# MeshCore HUD example view. Paste into a dashboard in raw configuration mode.
+# Replace each placeholder with the public key prefix that appears in YOUR entity IDs:
+#   GATEWAY  your companion radio, e.g. sensor.meshcore_2741e8_node_status_...  -> "2741e8"
+#   RELAY    a repeater you monitor, e.g. binary_sensor.meshcore_572932b483_online_... -> "572932b483"
+#   TRACKER  a client node that sends GPS adverts (optional)
+title: Overview
+path: meshcore-overview
+icon: mdi:radio-tower
+type: sections
+max_columns: 2
+dense_section_placement: true
+sections:
+  - type: grid
+    column_span: 2
+    cards:
+      - type: custom:meshcore-status-card
+        gateway: "aabbcc"
+        relay: "1122334455"
+        trackers:
+          - prefix: "9988776655"
+        grid_options:
+          columns: full
+  - type: grid
+    cards:
+      - type: custom:meshcore-scope-card
+        relay: "1122334455"
+        trackers:
+          - prefix: "9988776655"
+            name: Tracker 1
+      - type: custom:meshcore-link-card
+        gateway: "aabbcc"
+        relay: "1122334455"
+      - type: custom:meshcore-tracker-card
+        trackers:
+          - prefix: "9988776655"
+            name: Tracker 1
+            note: Vehicle
+  - type: grid
+    cards:
+      - type: custom:meshcore-relay-card
+        prefix: "1122334455"
+      - type: custom:meshcore-census-card
+        exclude: ["1122334455", "9988776655"]
